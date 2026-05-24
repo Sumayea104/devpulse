@@ -7,6 +7,13 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
+// Debug: Check if DATABASE_URL is loaded
+console.log('=== DEBUG: Environment Variables ===');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+console.log('DATABASE_URL first 50 chars:', process.env.DATABASE_URL?.substring(0, 50));
+console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
+console.log('===================================');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
