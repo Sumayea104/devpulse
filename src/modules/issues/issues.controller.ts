@@ -35,37 +35,65 @@ export const getAllIssues = async (req: Request, res: Response) => {
     const conditions: string[] = [];
     const values: any[] = [];
     
-    if (type) { values.push(type); conditions.push(`type = $${values.length}`); }
-    if (status) { values.push(status); conditions.push(`status = $${values.length}`); }
-    if (conditions.length > 0) { sql += ' WHERE ' + conditions.join(' AND '); }
+    if (type) { 
+      values.push(type); 
+      conditions.push(`type = $${values.length}`); 
+    }
+    if (status) { 
+      values.push(status); 
+      conditions.push(`status = $${values.length}`); 
+    }
+    if (conditions.length > 0) { 
+      sql += ' WHERE ' + conditions.join(' AND '); 
+    }
     
     const sortOrder = sort === 'oldest' ? 'ASC' : 'DESC';
     sql += ` ORDER BY created_at ${sortOrder}`;
     
     const issues = await query(sql, values);
-    const reporterIds = issues.rows.map((issue: any) => issue.reporter_id);
     
-    if (reporterIds.length === 0) {
+    if (issues.rows.length === 0) {
       return sendResponse(res, 200, true, 'Issues retrieved', []);
     }
     
-    const reporters = await query(`SELECT id, name, role FROM users WHERE id = ANY($1)`, [reporterIds]);
-    const reporterMap = new Map();
-    reporters.rows.forEach((reporter: any) => reporterMap.set(reporter.id, reporter));
+
+    const reporterIds: number[] = [];
+    for (const issue of issues.rows) {
+      reporterIds.push(issue.reporter_id);
+    }
     
-    const issuesWithReporters = issues.rows.map((issue: any) => ({
-      id: issue.id,
-      title: issue.title,
-      description: issue.description,
-      type: issue.type,
-      status: issue.status,
-      reporter: reporterMap.get(issue.reporter_id),
-      created_at: issue.created_at,
-      updated_at: issue.updated_at,
-    }));
+   
+    const reporters: any[] = [];
+    for (const id of reporterIds) {
+      const result = await query('SELECT id, name, role FROM users WHERE id = $1', [id]);
+      if (result.rows.length > 0) {
+        reporters.push(result.rows[0]);
+      }
+    }
+    
+  
+    const reporterMap = new Map();
+    for (const reporter of reporters) {
+      reporterMap.set(reporter.id, reporter);
+    }
+    
+    const issuesWithReporters = [];
+    for (const issue of issues.rows) {
+      issuesWithReporters.push({
+        id: issue.id,
+        title: issue.title,
+        description: issue.description,
+        type: issue.type,
+        status: issue.status,
+        reporter: reporterMap.get(issue.reporter_id) || null,
+        created_at: issue.created_at,
+        updated_at: issue.updated_at,
+      });
+    }
     
     sendResponse(res, 200, true, 'Issues retrieved', issuesWithReporters);
   } catch (error) {
+    console.error('Get all issues error:', error);
     sendResponse(res, 500, false, 'Internal server error');
   }
 };
