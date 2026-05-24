@@ -160,11 +160,11 @@ devpulse/
 
 ### Step 1: Clone the Repository
 
-```
+```bash
 git clone https://github.com/Sumayea104/devpulse.git
 cd devpulse
 
----
+```
 ### Step 2: Install Dependencies
 
 ```
@@ -303,6 +303,12 @@ curl -X POST http://localhost:5000/api/issues \
 > ```
 ---
 
+## 📚 Learnings & Challenges
+
+Faced several challenges during development. 
+➡️ **[See detailed learnings](./docs/learnings.md)**
+
+---
 ## 👨‍💻 Author
 
 **Sumayea Rahman**  
