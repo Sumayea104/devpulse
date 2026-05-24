@@ -55,6 +55,7 @@ DevPulse is a collaborative platform for software teams to report bugs, suggest 
 
 ## 📂 Project Structure
 
+
 devpulse/
 ├── src/
 │ ├── config/
