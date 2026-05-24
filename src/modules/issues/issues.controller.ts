@@ -62,7 +62,7 @@ export const getAllIssues = async (req: Request, res: Response) => {
       reporterIds.push(issue.reporter_id);
     }
     
-   
+    
     const reporters: any[] = [];
     for (const id of reporterIds) {
       const result = await query('SELECT id, name, role FROM users WHERE id = $1', [id]);
