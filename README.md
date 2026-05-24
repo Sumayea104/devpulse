@@ -322,4 +322,4 @@ MIT
 
 - **Live API:** [https://devpulse-production-7845.up.railway.app](https://devpulse-production-7845.up.railway.app)
 - **GitHub Repository:** [https://github.com/Sumayea104/devpulse](https://github.com/Sumayea104/devpulse)
-- **Health Check:** [https://devpulse-production-7845.up.railway.app/health](https://devpulse-production-7845.up.railway.app/health)
+- **Health Check:** [https://devpulse-production-7845.up.railway.app/health](https://devpulse-production-7845.up.railway.app/health) 
