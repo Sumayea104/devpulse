@@ -2,7 +2,7 @@
 
 ## 🌐 Live URL
 
-**API Base URL:** `https://.com` 
+API Base URL: `https://devpulse-production-7845.up.railway.app`
 
 ## 📖 Project Overview
 
@@ -52,39 +52,37 @@ DevPulse is a collaborative platform for software teams to report bugs, suggest 
 | **Deployment** | Railway / Render |
 
 ---
-
 ## 📂 Project Structure
 
-
+```
 devpulse/
 ├── src/
-│ ├── config/
-│ │ └── database.ts # PostgreSQL connection pool
-│ ├── middleware/
-│ │ ├── auth.ts # JWT authentication
-│ │ └── errorHandler.ts # Global error handler
-│ ├── modules/
-│ │ ├── auth/
-│ │ │ ├── auth.controller.ts
-│ │ │ └── auth.routes.ts
-│ │ └── issues/
-│ │ ├── issues.controller.ts
-│ │ └── issues.routes.ts
-│ ├── utils/
-│ │ └── response.ts # Standardized API response
-│ ├── types/
-│ │ └── express.d.ts # TypeScript type extensions
-│ ├── app.ts # Express app setup
-│ └── server.ts # Server entry point
+│   ├── config/
+│   │   └── database.ts          # PostgreSQL connection pool
+│   ├── middleware/
+│   │   ├── auth.ts              # JWT authentication
+│   │   └── errorHandler.ts      # Global error handler
+│   ├── modules/
+│   │   ├── auth/
+│   │   │   ├── auth.controller.ts
+│   │   │   └── auth.routes.ts
+│   │   └── issues/
+│   │       ├── issues.controller.ts
+│   │       └── issues.routes.ts
+│   ├── utils/
+│   │   └── response.ts          # Standardized API response
+│   ├── types/
+│   │   └── express.d.ts         # TypeScript type extensions
+│   ├── app.ts                   # Express app setup
+│   └── server.ts                # Server entry point
 ├── sql/
-│ └── schema.sql # Database schema
-├── .env # Environment variables
+│   └── schema.sql               # Database schema
+├── .env                         # Environment variables
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
 └── README.md
-
----
+```
 
 
 ---
@@ -162,7 +160,7 @@ devpulse/
 
 ### Step 1: Clone the Repository
 
-```bash
+```
 git clone https://github.com/Sumayea104/devpulse.git
 cd devpulse
 
@@ -237,9 +235,9 @@ curl -X POST http://localhost:5000/api/issues \
   -H "Content-Type: application/json" \
   -d '{"title":"Bug found","description":"This is a detailed description with at least 20 characters","type":"bug"}'
 
-  ```
+```
 
-  ### 📋 API Response Format
+### 📋 API Response Format
 - Success Response
 
 ```
@@ -290,17 +288,6 @@ curl -X POST http://localhost:5000/api/issues \
 7. Set **Start Command**: `npm start`
 8. Railway auto-deploys on every push ✅
 
-### Deploy to Render
-
-1. Push code to GitHub
-2. Create account at [Render.com](https://render.com)
-3. Click **New +** → **Web Service**
-4. Connect your GitHub repository
-5. Configure:
-   - **Build Command:** `npm install && npm run build`
-   - **Start Command:** `npm start`
-6. Add environment variables (same as above)
-7. Click **Create Web Service**
 
 ### Database (NeonDB)
 
@@ -314,6 +301,7 @@ curl -X POST http://localhost:5000/api/issues \
 > ```
 > postgresql://username:password@ep-cool-hill-123456.ap-southeast-1.aws.neon.tech/devpulse?sslmode=require
 > ```
+---
 
 ## 👨‍💻 Author
 
@@ -332,5 +320,6 @@ MIT
 
 ## 🔗 Links
 
-- **Live API:** `https://your-deployment-url.com` (Update after deployment)
+- **Live API:** [https://devpulse-production-7845.up.railway.app](https://devpulse-production-7845.up.railway.app)
 - **GitHub Repository:** [https://github.com/Sumayea104/devpulse](https://github.com/Sumayea104/devpulse)
+- **Health Check:** [https://devpulse-production-7845.up.railway.app/health](https://devpulse-production-7845.up.railway.app/health)
